@@ -142,12 +142,20 @@ Vector2 Vector2::operator*(const Vector2 &other) const {
     return result;
 }
 
-Vector2 & Vector2::operator*=(float other) {
+Vector2& Vector2::operator*=(float other) {
 
 	_x *= other;
 	_y *= other;
 
 	return *this;
+}
+Vector2& Vector2::operator*(float other)
+{
+    _x *= other;
+	_y *= other;
+
+	return *this;
+
 }
 
 Vector2 Vector2::operator*(float other) const {
@@ -179,7 +187,7 @@ bool Vector2::operator!=(const Vector2& other) {
 }
 
 std::ostream &operator<<(std::ostream &out,const Vector2& v) {
-	out << v.ToString ();	
+	out << v.ToString ();
     return out;
 }
 

@@ -17,6 +17,7 @@
 					<Add directory="../../include" />
 					<Add directory="lib/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
 					<Add directory="lib/SDL2-2.0.4/i686-w64-mingw32/include/SDL2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-lmingw32 -lSDL2main -lSDL2 -lSDL2_Image" />
@@ -35,6 +36,7 @@
 					<Add directory="../../include" />
 					<Add directory="lib/SDL2_image-2.0.0/i686-w64-mingw32/include/SDL2" />
 					<Add directory="lib/SDL2-2.0.4/i686-w64-mingw32/include/SDL2" />
+					<Add directory="include" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
@@ -48,13 +50,16 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="../../include/Background.h" />
 		<Unit filename="../../include/BallObject.h" />
 		<Unit filename="../../include/Game.h" />
 		<Unit filename="../../include/GameEngine.h" />
 		<Unit filename="../../include/GameTime.h" />
 		<Unit filename="../../include/Image.h" />
+		<Unit filename="../../include/ImageAtlas.h" />
 		<Unit filename="../../include/ImageLoader.h" />
 		<Unit filename="../../include/Input.h" />
+		<Unit filename="../../include/NinjaObject.h" />
 		<Unit filename="../../include/Object.h" />
 		<Unit filename="../../include/ResourceLoader.h" />
 		<Unit filename="../../include/Resources.h" />
@@ -63,13 +68,16 @@
 		<Unit filename="../../include/Screen.h" />
 		<Unit filename="../../include/Vector2.h" />
 		<Unit filename="../../include/Window.h" />
+		<Unit filename="../../src/Background.cpp" />
 		<Unit filename="../../src/BallObject.cpp" />
 		<Unit filename="../../src/Game.cpp" />
 		<Unit filename="../../src/GameEngine.cpp" />
 		<Unit filename="../../src/GameTime.cpp" />
 		<Unit filename="../../src/Image.cpp" />
+		<Unit filename="../../src/ImageAtlas.cpp" />
 		<Unit filename="../../src/ImageLoader.cpp" />
 		<Unit filename="../../src/Input.cpp" />
+		<Unit filename="../../src/NinjaObject.cpp" />
 		<Unit filename="../../src/Object.cpp" />
 		<Unit filename="../../src/Resources.cpp" />
 		<Unit filename="../../src/Scene.cpp" />

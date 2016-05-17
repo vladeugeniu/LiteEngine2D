@@ -8,7 +8,7 @@
 #endif
 
 #include <cstddef>
-
+#define WINDOW_WIDTH 1280
 class Window
 {
 private:
