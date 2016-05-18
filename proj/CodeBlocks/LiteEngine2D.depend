@@ -1115,7 +1115,7 @@
 	<vector>
 	"SceneObject.h"
 
-1463409739 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\sceneobject.h
+1463596197 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\sceneobject.h
 	"Object.h"
 
 1463409739 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\object.h
@@ -1569,7 +1569,7 @@
 	"Resources.h"
 	"Screen.h"
 
-1463416032 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\background.h
+1463596187 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\background.h
 	"SceneObject.h"
 	"Vector2.h"
 	"Image.h"
@@ -1584,7 +1584,7 @@
 	"Image.h"
 	<string>
 
-1463591977 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\ninjaobject.cpp
+1463592410 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\ninjaobject.cpp
 	"NinjaObject.h"
 	"Input.h"
 	"GameTime.h"
@@ -1593,10 +1593,15 @@
 	<cstdlib>
 	"Window.h"
 
-1463591179 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\ninjaobject.h
-	"SceneObject.h"
+1463596586 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\ninjaobject.h
+	"Character.h"
 	"ImageAtlas.h"
 	"Vector2.h"
 	<map>
 	<string>
+
+1463596400 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\character.cpp
+
+1463596492 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\character.h
+	<SceneObject.h>
 

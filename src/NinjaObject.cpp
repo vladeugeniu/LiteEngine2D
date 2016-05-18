@@ -21,6 +21,7 @@ _position(500, 120)
     _sprites["Idle Left"] = new ImageAtlas("Assets/Images/idle_left");
     _sprites["Idle Right"] = new ImageAtlas("Assets/Images/idle_right");
 
+    _range = 100;
     _image = _sprites["Idle Right"]->getImage(0);
     _spriteNumber = 0;
     _spriteTime = 0;
@@ -46,41 +47,39 @@ void NinjaObject::Update ()
      if(!_inAir && !_attack && !_dead )
         {
             if (Input::GetKey ('w'))
-                {
-                    _spriteNumber = 0;
-                    _spriteTime = 0;
-                    Jump();
-                    velocity = _destination - _position;
-
-                    if (velocity.SqrMagnitude () < 0.1f)
-                        return;
-
-                    velocity.Normalize ();
-                    _position += velocity * _speed * GameTime::GetDeltaTime ();
-                    return ;
-                }
+            {
+                _spriteNumber = 0;
+                _spriteTime = 0;
+                Jump();
+                velocity = _destination - _position;
+                if (velocity.SqrMagnitude () < 0.1f)
+                    return;
+                velocity.Normalize ();
+                _position += velocity * _speed * GameTime::GetDeltaTime ();
+                return ;
+            }
 
             if (Input::GetKey ('d'))
-                {
-                if(_position.GetX() < WINDOW_WIDTH - 50)
-                    velocity += Vector2::Right;
-                if(_orientation != 'r')
-                    UpdateOrientation('r');
-                if(_spriteTime > 0.05)
-                    UpdateSprite("Run Right");
-                _spriteTime += GameTime::GetDeltaTime ();
-                }
+            {
+            if(_position.GetX() < WINDOW_WIDTH - 50)
+                velocity += Vector2::Right;
+            if(_orientation != 'r')
+                UpdateOrientation('r');
+            if(_spriteTime > 0.05)
+                UpdateSprite("Run Right");
+            _spriteTime += GameTime::GetDeltaTime ();
+            }
 
             if (Input::GetKey ('a'))
-                {
-                    if(_position.GetX() > -15)
-                        velocity += Vector2::Left;
-                    if(_orientation != 'l')
-                        UpdateOrientation('l');
-                    if(_spriteTime > 0.05)
-                        UpdateSprite("Run Left");
-                    _spriteTime += GameTime::GetDeltaTime ();
-                }
+            {
+                if(_position.GetX() > -15)
+                    velocity += Vector2::Left;
+                if(_orientation != 'l')
+                    UpdateOrientation('l');
+                if(_spriteTime > 0.05)
+                    UpdateSprite("Run Left");
+                _spriteTime += GameTime::GetDeltaTime ();
+            }
 
             if(Input::GetKey ('x'))
             {
