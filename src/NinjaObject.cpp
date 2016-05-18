@@ -47,6 +47,8 @@ void NinjaObject::Update ()
         {
             if (Input::GetKey ('w'))
                 {
+                    _spriteNumber = 0;
+                    _spriteTime = 0;
                     Jump();
                     velocity = _destination - _position;
 
@@ -111,6 +113,7 @@ void NinjaObject::Update ()
         {
             if(_attack) Attack();
             else if(_inAir) JumpContinue();
+                else Dead();
         }
 }
 
@@ -158,16 +161,10 @@ void NinjaObject::Jump()
 void NinjaObject::JumpContinue()
 {
     if (abs(_destination.GetX() - _position.GetX() ) < 0.25  && abs(_destination.GetY() - _position.GetY())< 0.25 )
-            _destination = _fallDestination;
+        _destination = _fallDestination;
     if (abs(_destination.GetX() - _position.GetX() ) < 0.25  && abs(_destination.GetY() - _position.GetY())< 0.25 )
-        {
-            _inAir=false;
-            if(_orientation == 'r')
-                _image = _sprites["Idle Right"]->getImage(0);
-            else
-                _image = _sprites["Idle Left"]->getImage(0);
-        }
-     Vector2 velocity = _destination - _position;
+        _inAir=false;
+    Vector2 velocity = _destination - _position;
     if (velocity.SqrMagnitude () < 0.1f)
         return;
     velocity.Normalize ();
