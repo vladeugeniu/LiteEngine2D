@@ -29,7 +29,11 @@ class NinjaObject : public SceneObject
         bool _attack;
         void UpdateSprite(std::string);
         void UpdateOrientation(char);
-        void jump();
+        void Jump();
+        void Attack();
+        void Idle();
+        void Dead();
+        void JumpContinue();
 };
 
 #endif // NINJAOBJECT_H

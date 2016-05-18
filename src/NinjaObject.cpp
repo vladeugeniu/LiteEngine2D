@@ -43,27 +43,23 @@ void NinjaObject::Update ()
 {
 	 Vector2 velocity = Vector2::Zero;
 
-
-     if(!_inAir)
+     if(!_inAir && !_attack && !_dead )
         {
             if (Input::GetKey ('w'))
                 {
-                    jump();
+                    Jump();
                     velocity = _destination - _position;
 
                     if (velocity.SqrMagnitude () < 0.1f)
                         return;
+
                     velocity.Normalize ();
                     _position += velocity * _speed * GameTime::GetDeltaTime ();
                     return ;
                 }
 
-
-
-
             if (Input::GetKey ('d'))
                 {
-                _dead=false;
                 if(_position.GetX() < WINDOW_WIDTH - 50)
                     velocity += Vector2::Right;
                 if(_orientation != 'r')
@@ -72,7 +68,6 @@ void NinjaObject::Update ()
                     UpdateSprite("Run Right");
                 _spriteTime += GameTime::GetDeltaTime ();
                 }
-
 
             if (Input::GetKey ('a'))
                 {
@@ -84,55 +79,29 @@ void NinjaObject::Update ()
                         UpdateSprite("Run Left");
                     _spriteTime += GameTime::GetDeltaTime ();
                 }
-            if(!_attack&&!Input::GetKey ('a') && !Input::GetKey ('d') && !Input::GetKey ('w') && !_dead)
-            {
-                _spriteNumber = 0;
-                if(_spriteTime > 0.05)
-                    {
-                        if(_orientation == 'r')
-                            UpdateSprite("Idle Right");
-                        if(_orientation == 'l')
-                            UpdateSprite("Idle Left");
-                    }
-                _spriteTime += GameTime::GetDeltaTime ();
-            }
 
-            if(Input::GetKey ('x')||_dead)
+            if(Input::GetKey ('x'))
             {
                 _dead = true;
-                if(_spriteTime > 0.05)
-                    {
-                        if(_orientation == 'r')
-                            UpdateSprite("Dead Right");
-                        if(_orientation == 'l')
-                            UpdateSprite("Dead Left");
-                    }
-                _spriteTime += GameTime::GetDeltaTime ();
+                _spriteNumber = 0;
+                _spriteTime = 0;
+                Dead();
             }
 
 
-             if(Input::GetKey ('q')||_attack)
+             if(Input::GetKey ('q'))
             {
                 _attack = true;
-                if(_spriteTime > 0.05)
-                    {
-                        if(_orientation == 'r')
-                            UpdateSprite("Attack Right");
-                        if(_orientation == 'l')
-                            UpdateSprite("Attack Left");
-                    }
-                _spriteTime += GameTime::GetDeltaTime ();
+                _spriteNumber = 0;
+                _spriteTime = 0;
+                Attack();
             }
 
-
-
-
-
-
+            if(!Input::GetKey ('a') && !Input::GetKey ('d') && !Input::GetKey ('w') && !Input::GetKey('q') && !_attack)
+                Idle();
 
             if (velocity == Vector2::Zero)
                 return;
-
             velocity.Normalize ();
             _position += velocity * _speed * GameTime::GetDeltaTime ();
 
@@ -140,51 +109,24 @@ void NinjaObject::Update ()
 
         else
         {
-            if (abs(_destination.GetX() - _position.GetX() ) < 0.25  && abs(_destination.GetY() - _position.GetY())< 0.25 )
-                    _destination = _fallDestination;
-
-            if (abs(_destination.GetX() - _position.GetX() ) < 0.25  && abs(_destination.GetY() - _position.GetY())< 0.25 )
-                {
-                    _inAir=false;
-                    if(_orientation == 'r')
-                        _image = _sprites["Idle Right"]->getImage(0);
-                    else
-                        _image = _sprites["Idle Left"]->getImage(0);
-                }
-            velocity = _destination - _position;
-
-            if (velocity.SqrMagnitude () < 0.1f)
-                return;
-            velocity.Normalize ();
-            _position += velocity * _speed * GameTime::GetDeltaTime ();
-            if(_spriteTime > 0.05)
-                    if(_orientation == 'r') UpdateSprite("Jump Right");
-                        else UpdateSprite("Jump Left");
-            _spriteTime += GameTime::GetDeltaTime ();
-
-            std::cout << _destination.GetX() <<" "<< _destination.GetY()<<std::endl;
-            std::cout << _position.GetX() <<" "<< _position.GetY()<<std::endl;
-
+            if(_attack) Attack();
+            else if(_inAir) JumpContinue();
         }
 }
+
 void NinjaObject::UpdateSprite(std::string key)
 {
 	 	_image = _sprites[key]->getImage(_spriteNumber);
 
 	 	if(_spriteNumber == 9)
-        {
             _spriteNumber = 0;
-            if(key.find("Dead") != std::string::npos)
-                _dead = false;
-            if(key.find("Attack") != std::string::npos)
-                _attack = false;
-        }
         else
             _spriteNumber ++;
         _spriteTime = 0;
 
 
 }
+
 void NinjaObject::UpdateOrientation(char newOrientation)
 {
     _spriteTime = 0;
@@ -192,29 +134,89 @@ void NinjaObject::UpdateOrientation(char newOrientation)
     _orientation = newOrientation;
 }
 
-
-void NinjaObject::jump()
+void NinjaObject::Jump()
 {
     _destination = _position;
     _fallDestination = _position;
     _inAir = true;
     if (Input::GetKey ('d'))
-        {
-            _orientation = 'r';
-            _destination.SetX(std::min(_destination.GetX()+50,(float)(WINDOW_WIDTH - 50)));
-            _fallDestination.SetX(std::min(_destination.GetX()+100,(float)(WINDOW_WIDTH - 50)));
-        }
+    {
+        _orientation = 'r';
+        _destination.SetX( std::min( _destination.GetX() + 50, (float) (WINDOW_WIDTH - 50) ) );
+        _fallDestination.SetX( std::min( _destination.GetX() + 100, (float) (WINDOW_WIDTH - 50) ) );
+    }
     if (Input::GetKey ('a'))
-        {
-            _orientation = 'l';
-            _destination.SetX(std::max(_destination.GetX()-50,(float)-15));
-            _fallDestination.SetX(std::max(_destination.GetX()-100,(float)-15.0));
-        }
-    _destination.SetY(_destination.GetY()+100);
+    {
+        _orientation = 'l';
+        _destination.SetX(std::max( _destination.GetX() - 50,( float) - 15));
+        _fallDestination.SetX(std::max( _destination.GetX() - 100, (float) - 15));
+    }
+    _destination.SetY( _destination.GetY() + 100 );
 
 }
 
+void NinjaObject::JumpContinue()
+{
+    if (abs(_destination.GetX() - _position.GetX() ) < 0.25  && abs(_destination.GetY() - _position.GetY())< 0.25 )
+            _destination = _fallDestination;
+    if (abs(_destination.GetX() - _position.GetX() ) < 0.25  && abs(_destination.GetY() - _position.GetY())< 0.25 )
+        {
+            _inAir=false;
+            if(_orientation == 'r')
+                _image = _sprites["Idle Right"]->getImage(0);
+            else
+                _image = _sprites["Idle Left"]->getImage(0);
+        }
+     Vector2 velocity = _destination - _position;
+    if (velocity.SqrMagnitude () < 0.1f)
+        return;
+    velocity.Normalize ();
+    _position += velocity * _speed * GameTime::GetDeltaTime ();
+    if(_spriteTime > 0.05)
+        if(_orientation == 'r') UpdateSprite("Jump Right");
+            else UpdateSprite("Jump Left");
+        _spriteTime += GameTime::GetDeltaTime ();
 
+            }
 
+void NinjaObject::Dead()
+{
+    if(_spriteTime > 0.05)
+    {
+        if(_orientation == 'r')
+            UpdateSprite("Dead Right");
+        if(_orientation == 'l')
+            UpdateSprite("Dead Left");
+    }
+    _spriteTime += GameTime::GetDeltaTime ();
+    if(_spriteNumber == 9)
+        _dead = false;
+}
 
+void NinjaObject::Attack()
+{
+    if(_spriteTime > 0.05)
+    {
+        if(_orientation == 'r')
+            UpdateSprite("Attack Right");
+        if(_orientation == 'l')
+            UpdateSprite("Attack Left");
+    }
+    _spriteTime += GameTime::GetDeltaTime ();
 
+    if(_spriteNumber == 9)
+        _attack = false;
+
+}
+
+void NinjaObject::Idle()
+{
+    if(_spriteTime > 0.05)
+    {
+        if(_orientation == 'r')
+            UpdateSprite("Idle Right");
+        if(_orientation == 'l')
+            UpdateSprite("Idle Left");
+    }
+    _spriteTime += GameTime::GetDeltaTime ();
+}
