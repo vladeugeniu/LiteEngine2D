@@ -144,16 +144,16 @@ void NinjaObject::Jump()
     if (Input::GetKey ('d'))
     {
         _orientation = 'r';
-        _destination.SetX( std::min( _destination.GetX() + 50, (float) (WINDOW_WIDTH - 50) ) );
-        _fallDestination.SetX( std::min( _destination.GetX() + 100, (float) (WINDOW_WIDTH - 50) ) );
+        _destination.SetX( std::min( _destination.GetX() + 200, (float) (WINDOW_WIDTH - 50) ) );
+        _fallDestination.SetX( std::min( _destination.GetX() + 200, (float) (WINDOW_WIDTH - 50) ) );
     }
     if (Input::GetKey ('a'))
     {
         _orientation = 'l';
-        _destination.SetX(std::max( _destination.GetX() - 50,( float) - 15));
-        _fallDestination.SetX(std::max( _destination.GetX() - 100, (float) - 15));
+        _destination.SetX(std::max( _destination.GetX() - 200,( float) - 15));
+        _fallDestination.SetX(std::max( _destination.GetX() - 200, (float) - 15));
     }
-    _destination.SetY( _destination.GetY() + 100 );
+    _destination.SetY( _destination.GetY() + 150 );
 
 }
 

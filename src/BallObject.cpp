@@ -16,7 +16,7 @@ BallObject::BallObject () :
 	_position (20, 20)
 {
 	_image = Resources::LoadImage ("Assets/Images/Ball.png");
-
+    range = 0;
 	// This need to be deleted too
 	_position = Vector2 (rand () % Screen::GetWidth (), rand () % Screen::GetHeight ());
 }
@@ -35,7 +35,7 @@ void BallObject::Update ()
 {
 //	 Uncomment this to switch the controls of the ball to keyboard
 
-	 Vector2 velocity = Vector2::Zero;
+/*	 Vector2 velocity = Vector2::Zero;
 
 	 if (Input::GetKey ('w')) {
 	 	velocity += Vector2::Up;
@@ -56,9 +56,9 @@ void BallObject::Update ()
 
 	 velocity.Normalize ();
 
-	 _position += velocity * _speed * GameTime::GetDeltaTime ();
+	 _position += velocity * _speed * GameTime::GetDeltaTime ();*/
 
-/*	_destination = Input::GetMousePosition ();
+	_destination = Input::GetMousePosition ();
 	_destination.SetY (Screen::GetHeight () - _destination.GetY ());
 
 	Vector2 velocity = _destination - _position;
@@ -70,5 +70,5 @@ void BallObject::Update ()
 	velocity.Normalize ();
 
 	_position += velocity * _speed * GameTime::GetDeltaTime ();
-*/
+
 }
