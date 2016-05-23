@@ -6,7 +6,7 @@
 #include "Input.h"
 #include "GameTime.h"
 #include "Vector2.h"
-
+#include "CollisionSystem.h"
 #include <cstdlib>
 
 #define BALL_SPEED 1000
@@ -15,6 +15,7 @@ BallObject::BallObject () :
 	_speed (BALL_SPEED),
 	_position (20, 20)
 {
+    CollisionSystem::Instance()->Add(this);
 	_image = Resources::LoadImage ("Assets/Images/Ball.png");
     range = 0;
 	// This need to be deleted too

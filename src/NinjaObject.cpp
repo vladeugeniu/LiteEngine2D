@@ -5,11 +5,13 @@
 #include <algorithm>
 #include <cstdlib>
 #include "Window.h"
+#include "CollisionSystem.h"
 #define Ninja_SPEED 350
 
 NinjaObject::NinjaObject(): _speed(Ninja_SPEED),
 _position(500, 120)
 {
+    CollisionSystem::Instance()->Add(this);
     _sprites["Run Right"] = new ImageAtlas("Assets/Images/run_right");
     _sprites["Run Left"] = new ImageAtlas("Assets/Images/run_left");
     _sprites["Jump Right"] = new ImageAtlas("Assets/Images/jump_right");

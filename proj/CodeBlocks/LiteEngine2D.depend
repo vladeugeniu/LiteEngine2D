@@ -1507,9 +1507,10 @@
 1463409740 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\input.cpp
 	"Input.h"
 
-1463409740 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\main.cpp
+1463904336 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\main.cpp
 	"Game.h"
 	"GameEngine.h"
+	"CollisionSystem.h"
 
 1463409740 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\object.cpp
 	"Object.h"
@@ -1523,13 +1524,12 @@
 	<string>
 	"Image.h"
 
-1463739325 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\scene.cpp
+1464036216 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\scene.cpp
 	"Scene.h"
 	"NinjaObject.h"
 	"BallObject.h"
 	"Background.h"
-	"Collider.h"
-	"Character.h"
+	"CollisionSystem.h"
 
 1463835450 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\ballobject.h
 	"Image.h"
@@ -1558,13 +1558,14 @@
 1463414088 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\window.cpp
 	"Window.h"
 
-1463604406 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\ballobject.cpp
+1463904985 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\ballobject.cpp
 	"BallObject.h"
 	"Resources.h"
 	"Screen.h"
 	"Input.h"
 	"GameTime.h"
 	"Vector2.h"
+	"CollisionSystem.h"
 	<cstdlib>
 
 1463416058 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\background.cpp
@@ -1587,7 +1588,7 @@
 	"Image.h"
 	<string>
 
-1463672793 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\ninjaobject.cpp
+1464031486 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\ninjaobject.cpp
 	"NinjaObject.h"
 	"Input.h"
 	"GameTime.h"
@@ -1595,8 +1596,9 @@
 	<algorithm>
 	<cstdlib>
 	"Window.h"
+	"CollisionSystem.h"
 
-1463835396 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\ninjaobject.h
+1464031628 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\ninjaobject.h
 	"SceneObject.h"
 	"CollisionInterface.h"
 	"ImageAtlas.h"
@@ -1618,8 +1620,19 @@
 	"Character.h"
 	"Vector2.h"
 
-1463835372 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\collisioninterface.h
+1463902781 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\collisioninterface.h
+	"Vector2.h"
 
 1463832948 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\collisioninterface.cpp
+	"CollisionInterface.h"
+
+1464036202 source:c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\src\collisionsystem.cpp
+	"CollisionSystem.h"
+	"Vector2.h"
+	<iterator>
+
+1463904985 c:\users\stefan\documents\facultate\liteengne-git\liteengine2d\include\collisionsystem.h
+	<SceneObject.h>
+	<vector>
 	"CollisionInterface.h"
 

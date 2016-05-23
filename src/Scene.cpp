@@ -3,8 +3,8 @@
 #include "NinjaObject.h"
 #include "BallObject.h"
 #include "Background.h"
-#include "Collider.h"
-#include "Character.h"
+#include "CollisionSystem.h"
+
 Scene::Scene ()
 {
 	// Hardcoded construction of a new BallObject in the scene constructor
@@ -26,6 +26,7 @@ Scene::~Scene ()
 
 void Scene::Update ()
 {
+    CollisionSystem::Instance()->Update();
 	for (auto it : _objects) {
 		it->Update ();
 	}
