@@ -30,6 +30,7 @@ _position(500, 120)
     _orientation = 'r';
     _dead = false;
     _attack = false;
+    _onCollision = false;
 }
 
 NinjaObject::~NinjaObject()
@@ -217,4 +218,19 @@ void NinjaObject::Idle()
             UpdateSprite("Idle Left");
     }
     _spriteTime += GameTime::GetDeltaTime ();
+}
+
+void NinjaObject::OnCollisionEnter(CollisionInterface* toCollide)
+{
+    //Voi seta limitele de miscare in functie de obiectele cucare este in coliziune.
+    // de aceste limite se va tine cont doar daca _onCollision este true
+    Vector2 toCollidePosition = toCollide->GetPosition();
+    if ( toCollidePosition.GetX() > _position.GetX() )
+    {
+        _limitRight.SetX( toCollidePosition.GetX() );
+        _limitRight.SetY( _position.GetY());
+    }
+
+
+
 }

@@ -35,7 +35,7 @@ void CollisionSystem::Update()
         for(auto it2 : _collidableObjects)
 
             if(it != it2 && CheckCOllide(it,it2))
-                std::cout<<"collode\n";
+                std::cout<<"collide\n";
             else
                 std::cout<<"nu\n";
 }

@@ -18,7 +18,7 @@ class NinjaObject : public SceneObject,CollisionInterface
         int GetHeight(){return 131;}
         int GetRange(){return _range;}
         Vector2 GetPosition(){return _position;}
-        void OnCollisionEnter(CollisionInterface*){};
+        void OnCollisionEnter(CollisionInterface*);
     private:
         std::map <std::string,ImageAtlas*> _sprites;
         Image* _image;
@@ -33,6 +33,7 @@ class NinjaObject : public SceneObject,CollisionInterface
         float _spriteTime;
         float _speed;
         char _orientation;
+        bool _onCollision;
         bool _inAir;
         bool _dead;
         bool _attack;

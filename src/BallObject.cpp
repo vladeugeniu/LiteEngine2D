@@ -13,7 +13,7 @@
 
 BallObject::BallObject () :
 	_speed (BALL_SPEED),
-	_position (20, 20)
+	_position (900, 600)
 {
     CollisionSystem::Instance()->Add(this);
 	_image = Resources::LoadImage ("Assets/Images/Ball.png");
