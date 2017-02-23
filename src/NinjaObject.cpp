@@ -31,6 +31,7 @@ _position(500, 120)
     _dead = false;
     _attack = false;
     _onCollision = false;
+    _inAir = false;
 }
 
 NinjaObject::~NinjaObject()

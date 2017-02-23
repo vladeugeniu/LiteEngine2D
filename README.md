@@ -1,3 +1,9 @@
+Unfortunately, i lost this project when i installed a new SO and this is the only version that i could recover
+
+w,a,s,d - movement keys
+q - attack
+x - die
+
 LiteEngine2D
 ============
 

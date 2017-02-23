@@ -12,7 +12,7 @@ Scene::Scene ()
     _objects.push_back (new Background());
 	_objects.push_back (new NinjaObject ());
 
-    _objects.push_back (new BallObject ());
+  //  _objects.push_back (new BallObject ());
 	// _objects.push_back (new BallObject ());
 	// _objects.push_back (new BallObject ());
 	// _objects.push_back (new BallObject ());

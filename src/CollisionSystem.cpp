@@ -5,6 +5,7 @@
 
 bool CollisionSystem::CheckCOllide(CollisionInterface* first_obj, CollisionInterface* second_obj)
 {
+    // I'm prety sure this is nor working as it is supposed to do
     Vector2 obj1 = first_obj -> GetPosition();
     Vector2 obj2 = second_obj -> GetPosition();
 
